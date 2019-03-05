@@ -7,6 +7,11 @@ not used on its own - it currently doesn't have any kind of anchor-point.
 I plan on making a RepRap Snappy extruder plaform for the quick-fit
 attachment.
 
+Note: the hinge doesn't print well, when the model is printed flat.
+When I printed it hinge-end-down, standing up, it actually printed decently.
+A little rough near the latch, but functional.  I did thicken the plate
+from 4.28mm to 6mm, to improve stability while printing.
+
 I've taken most measurements from the STL files, presumably derived from
 the SketchUp files, so the numbers are pretty arbitrary-looking.  The
 only deviations-from-source I know of are:
@@ -19,7 +24,7 @@ I think everything else should be accurate to within a hundredth of a mm.
 
 $fn = 50;
 
-PLATE_SIZE_Z = 4.28;
+PLATE_SIZE_Z = 6; //4.28
 PLATE_SIZE_X = 122.1398;
 PLATE_SIZE_Y = 72.09;
 
