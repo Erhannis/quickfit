@@ -24,7 +24,7 @@ I think everything else should be accurate to within a hundredth of a mm.
 
 $fn = 50;
 
-LATCH_TYPE = 2; // 1=original, 2=bar
+LATCH_TYPE = 3; // 1=original, 2=bar, 3=multibar
 
 PLATE_SIZE_Z = 6; //4.28
 PLATE_SIZE_X = 122.1398;
@@ -57,6 +57,9 @@ BRACKET_LATCH_SIZE_X = SIDE_RAMP_2_SIZE_X - 1;
 BRACKET_LATCH_SIZE_Y = SIDE_RAMP_GAP_Y + (4*SIDE_RAMP_SIZE_Y) + 6;
 BRACKET_LATCH_SIZE_Z = BRACKET_SIZE_Z - SIDE_RAMP_SIZE_Z - BRACKET_TOP_SIZE_Z - 0.3;
 BRACKET_LATCH_HANDLE_SIZE_Z = BRACKET_LATCH_SIZE_Z + (2*BRACKET_TOP_SIZE_Z);
+
+// Latch type 3
+BRACKET_LATCH_3_SIZE_Y = BRACKET_LATCH_SIZE_Y/3;
 
 
 TOOL_HOLE_SIZE_Y = 39.65;
@@ -220,5 +223,16 @@ module latchType2() {
     cube([BRACKET_LATCH_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_LATCH_HANDLE_SIZE_Z]);
 };
 
-quickfit();
+module latchType3() {
+  for (i = [-1, 1]) {
+    translate([i*BRACKET_LATCH_SIZE_X,0,0]) {
+      cube([BRACKET_LATCH_SIZE_X, BRACKET_LATCH_3_SIZE_Y, BRACKET_LATCH_SIZE_Z]);
+      translate([0, -SIDE_RAMP_SIZE_Y])
+        cube([BRACKET_LATCH_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_LATCH_HANDLE_SIZE_Z]);
+    }
+  }
+};
+
+//quickfit();
 //latchType2();
+latchType3();
