@@ -50,7 +50,9 @@ LATCH_SEAT_SIZE_Y = LATCH_SEAT_BIG_HOLE_DIAM*1.5;//TODO
 LATCH_SEAT_SIZE_Z = 5.6;
 
 // Latch type 2
-BRACKET_1_SIZE_X = 2*SIDE_RAMP_1_SIZE_X;
+BRACKET_SKEW_X = 1*SIDE_RAMP_1_SIZE_X;
+BRACKET_1_SIZE_X = 2*SIDE_RAMP_1_SIZE_X;// + BRACKET_SKEW_X;
+BRACKET_3_SIZE_X = SIDE_RAMP_3_SIZE_X - BRACKET_SKEW_X;
 BRACKET_SIZE_Z = 2*SIDE_RAMP_SIZE_Z;
 BRACKET_TOP_SIZE_Z = (BRACKET_SIZE_Z - SIDE_RAMP_SIZE_Z) / 2;
 BRACKET_LATCH_SIZE_X = SIDE_RAMP_2_SIZE_X - 1;
@@ -97,11 +99,11 @@ module quickfit() {
               };
             };
           };
-        } else if (LATCH_TYPE == 2) {
+        } else if (LATCH_TYPE == 2 || LATCH_TYPE == 3) {
           // (Derived from side ramps)
           for (i = [-1,1]) {
             translate([0, i * (((SIDE_RAMP_GAP_Y+SIDE_RAMP_SIZE_Y)/2)+SIDE_RAMP_SIZE_Y), 0]) {
-              translate([PLATE_SIZE_X - BRACKET_1_SIZE_X - SIDE_RAMP_2_SIZE_X - SIDE_RAMP_3_SIZE_X, (PLATE_SIZE_Y - SIDE_RAMP_SIZE_Y)/2, PLATE_SIZE_Z]) {
+              translate([PLATE_SIZE_X - BRACKET_1_SIZE_X - SIDE_RAMP_2_SIZE_X - BRACKET_3_SIZE_X, (PLATE_SIZE_Y - SIDE_RAMP_SIZE_Y)/2, PLATE_SIZE_Z]) {
                 translate([0,0,0]) {
                   scale([BRACKET_1_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_SIZE_Z]) {
                     difference() {
@@ -118,7 +120,7 @@ module quickfit() {
                   cube([SIDE_RAMP_2_SIZE_X,SIDE_RAMP_SIZE_Y,BRACKET_TOP_SIZE_Z]);
                 }
                 translate([BRACKET_1_SIZE_X+SIDE_RAMP_2_SIZE_X,0,0]) {
-                  scale([SIDE_RAMP_3_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_SIZE_Z]) {
+                  scale([BRACKET_3_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_SIZE_Z]) {
                     translate([0,0,1])
                     rotate([0,90,0])
                     difference() {
@@ -224,15 +226,11 @@ module latchType2() {
 };
 
 module latchType3() {
-  for (i = [-1, 1]) {
-    translate([i*BRACKET_LATCH_SIZE_X,0,0]) {
-      cube([BRACKET_LATCH_SIZE_X, BRACKET_LATCH_3_SIZE_Y, BRACKET_LATCH_SIZE_Z]);
-      translate([0, -SIDE_RAMP_SIZE_Y])
-        cube([BRACKET_LATCH_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_LATCH_HANDLE_SIZE_Z]);
-    }
-  }
+  cube([BRACKET_LATCH_SIZE_X, BRACKET_LATCH_3_SIZE_Y, BRACKET_LATCH_SIZE_Z]);
+  translate([0, -SIDE_RAMP_SIZE_Y])
+    cube([BRACKET_LATCH_SIZE_X, SIDE_RAMP_SIZE_Y, BRACKET_LATCH_HANDLE_SIZE_Z]);
 };
 
-//quickfit();
+quickfit();
 //latchType2();
-latchType3();
+//latchType3();
