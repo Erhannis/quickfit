@@ -340,8 +340,12 @@ module latchType3() {
 
 
 { // Platform
-  translate([-PLATE_SIZE_X/2,-PLATE_SIZE_Y/2,0])
-    quickfit();
+  difference() {
+    translate([-PLATE_SIZE_X/2,-PLATE_SIZE_Y/2,0]) {
+      quickfit();
+    }
+    cube([55,50,PLATE_SIZE_Z*3], center=true);
+  }
   difference() {
     e3dv6_single_platform_parts();
     translate([-PLATE_SIZE_X/2,-PLATE_SIZE_Y/2,-1])
