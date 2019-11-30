@@ -2,14 +2,12 @@
 Platform for the Snappy 3, providing a platform for
 RichRap's Quick-Fit mount.
 
-Move this file (and blank_plate.scad) into a Snappy 3 (?)
-source directory (https://github.com/revarbat/snappy-reprap/)
-and generate an STL from it.
+The Snappy 3 is at https://github.com/revarbat/snappy-reprap/ .
 I worked from commit 1e9785113d9411961d42889f3a6d794b454ab787
 which I think may technically be v3.1; you might need to use
 that commit specifically depending on whether filenames
-changed or something.  (Oh, uh, I think I modified my config
-to match the dimensions of my hotend, before generating the STLs.
+changed or something.  (Oh, uh, I think I modified my config to
+match the dimensions of my hotend, before generating the STLs.
 You might need to generate your own STLs if the pregenerated
 ones don't fit your hotend.)  (Also, the Snappy has slop values;
 you may want to print a slop calibrator, adjust the slop, and
