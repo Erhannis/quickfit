@@ -31,13 +31,13 @@ comment out the ones you don't want.
 
 */
 
-include <config.scad>
-use <GDMUtils.scad>
-use <NEMA.scad>
-use <joiners.scad>
-use <extruder_mount.scad>
+include <../deps.link/snappy-reprap/config.scad>
+use <../deps.link/snappy-reprap/GDMUtils.scad>
+use <../deps.link/snappy-reprap/NEMA.scad>
+use <../deps.link/snappy-reprap/joiners.scad>
+use <../deps.link/snappy-reprap/extruder_mount.scad>
 
-use <blank_plate.scad>
+use <../deps.link/quickfitPlate/blank_plate.scad>
 
 $fa = 2;
 $fs = 1;
